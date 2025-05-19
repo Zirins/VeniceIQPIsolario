@@ -23,3 +23,7 @@ model t_topics {
   id_topic    Int    @id @default(autoincrement())
   description String @db.VarChar(100)
 }
+
+model t_islands {
+  id_island   Int    @id @default(autoincrement())
+}
