@@ -24,4 +24,8 @@ model t_topics {
   description String @db.VarChar(100)
 }
 
-model 
+model t_islands {
+  id_island   Int    @id @default(autoincrement())
+  name        String @db.VarChar(100)
+  
+}

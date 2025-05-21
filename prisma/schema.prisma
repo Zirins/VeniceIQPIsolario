@@ -26,4 +26,6 @@ model t_topics {
 
 model t_islands {
   id_island   Int    @id @default(autoincrement())
+  name        String @db.VarChar(100)
+
 }
