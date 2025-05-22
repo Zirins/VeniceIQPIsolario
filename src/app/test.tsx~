@@ -1,0 +1,20 @@
+
+
+import React, { useState } from "react";
+
+export default function testButton() {
+    const [message, setMessage] = useState("")
+
+    function handleClick() {
+        setMessage("Hello, World!")
+    }
+
+    return (
+        <div>
+            <button onClick={handleClick}
+            className="px-4 color-green">Click me</button>
+
+            {message && <p>{message}</p>}
+        </div>
+    )
+}
