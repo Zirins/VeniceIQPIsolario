@@ -1,30 +1,20 @@
-export default function Credits() {
-  // const sections = [
-  //     {
-  //         title: 'Bridges',
-  //         names: 'Bella Battaglia, Emma Herman, Griffin St. Pierre, & Luca Villano',
-  //     },
-  //     {
-  //         title: 'Canals',
-  //         names: 'Dylan Leung, Jack Ostrander, & Salvator Sapienza'
-  //     },
-  //     {
-  //         title: 'Docks',
-  //         names: 'Jiahui Lin, Diego McManus, Andrew Medvetsky, & Taeha Song'
-  //     },
-  //     {
-  //         title: 'Isles',
-  //         names: 'Nathan Cote, Alessandra Giovenco, Benson Lin, & Arianna Xie'
-  //     },
-  //     {
-  //         title: 'Streets',
-  //         names: 'Travis Burke, Tommy Reardon, Gleb Vlasov, & Brody Watson'
-  //     }
-  //     ]
+import { credits } from '@/lib/data/credits'
 
+export default function Credits() {
   return (
-    <div>
-      <p className="text-2xl">hello</p>
-    </div>
+    <main className="p-8 max-w-4xl mx-auto space-y-12">
+      <h1 className="text-3xl font-bold text-center">Project Credits</h1>
+
+      {credits.map(({ title, members }) => (
+        <div key={title} className="border p-4">
+          <h2 className="text-xl font-bold mb-2">{title}</h2>
+          <ul className="space-y-1">
+            {members.map((person) => (
+              <li key={person.name}>{person.name}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </main>
   )
 }
