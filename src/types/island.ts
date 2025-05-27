@@ -8,7 +8,7 @@ export type Island = {
   accessibility?: number
   affordability?: number
   geometry?: {
-    type: string
-    coordinates: number // We can refine this later using GeoJSON spec
+    type: 'Polygon' | 'MultiPolygon'
+    coordinates: number[][][] // We can refine this later using GeoJSON spec
   }
 }

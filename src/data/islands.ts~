@@ -1,0 +1,13 @@
+import { Island } from '@types/island'
+
+
+export const ISLANDS = [
+    {
+        id: 1,
+        name: "San Francesco della Vigna",
+        image: "/images/vigna.jpg",
+        dimensions: { area: "2.5ha", perimeter: "700m" },
+        census: [{ year: 2021, population: 140 }, { year: 2022, population: 120 }],
+        accessibility: { bridges: 2, vaporetto: true },
+    },
+]
