@@ -1,13 +1,10 @@
 'use client'
-
 import { createContext, useContext, useState } from 'react'
-import type { Island } from '@/types/island'
-import { ISLANDS } from '@/data/islands'
+import { Island } from '@/types/island'
 
 type IslandContextType = {
-  selectedIsland: Island | null
+  SelectedIsland: Island | null
   setSelectedIsland: (island: Island | null) => void
-  selectIsland: (id: string) => void
 }
 
 const IslandContext = createContext<IslandContextType | undefined>(undefined)
@@ -15,13 +12,8 @@ const IslandContext = createContext<IslandContextType | undefined>(undefined)
 export const IslandProvider = ({ children }: { children: React.ReactNode }) => {
   const [selectedIsland, setSelectedIsland] = useState<Island | null>(null)
 
-  const selectIsland = (id: string) => {
-    const island = ISLANDS.find((i) => i.id === id) || null
-    setSelectedIsland(island)
-  }
-
   return (
-    <IslandContext.Provider value={{ selectedIsland, setSelectedIsland, selectIsland }}>
+    <IslandContext.Provider value={{ SelectedIsland: selectedIsland, setSelectedIsland }}>
       {children}
     </IslandContext.Provider>
   )
