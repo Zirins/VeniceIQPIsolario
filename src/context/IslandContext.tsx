@@ -22,6 +22,9 @@ export const IslandProvider = ({ children }: { children: React.ReactNode }) => {
     island.name.toLowerCase().includes(filterQuery.toLowerCase())
   )
 
+  console.log('[IslandContext] Filter query:', filterQuery)
+  console.log('[IslandContext] Filtered islands:', filteredIslands)
+
   const selectIsland = (id: string) => {
     const island = ISLANDS.find((i) => i.id === id) || null
     setSelectedIsland(island)

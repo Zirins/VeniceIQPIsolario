@@ -1,12 +1,13 @@
 'use client'
 
 import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet'
-import { ISLANDS } from '@/data/islands'
 import { useIsland } from '@/context/IslandContext'
 import 'leaflet/dist/leaflet.css'
 
 export default function InteractiveMap() {
-  const { selectIsland } = useIsland()
+  const { selectIsland, filteredIslands } = useIsland()
+
+  console.log('[InteractiveMap] Rendering', filteredIslands.length, 'islands')
 
   return (
     <MapContainer center={[45.4379, 12.3346]} zoom={13} style={{ height: '100vh', width: '100%' }}>
@@ -15,7 +16,7 @@ export default function InteractiveMap() {
         attribution="&copy; OpenStreetMap contributors"
       />
 
-      {ISLANDS.map((island) => (
+      {filteredIslands.map((island) => (
         <GeoJSON
           key={island.id}
           data={{

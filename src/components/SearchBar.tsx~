@@ -1,0 +1,16 @@
+'use client'
+
+import { useIsland } from '@/context/IslandContext'
+
+export default function SearchBar() {
+    const { setFilterQuery } = useIsland()
+
+    return (
+        <input
+            type="text"
+            placeholder="Search islands"
+            className="p-2 border border-gray-300 rounded-md"
+            onChange={(e) => setFilterQuery(e.target.value)}
+        />
+    )
+}
