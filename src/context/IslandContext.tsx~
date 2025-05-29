@@ -1,19 +1,31 @@
 'use client'
+
 import { createContext, useContext, useState } from 'react'
-import { Island } from '@/types/island'
+import type { Island } from '@/types/island'
+import { ISLANDS } from '@/data/islands'
 
 type IslandContextType = {
-  SelectedIsland: Island | null
+  selectedIsland: Island | null
   setSelectedIsland: (island: Island | null) => void
+  selectIsland: (id: string) => void
+  filteredIslands: Island[]
+  setFilterQuery: (query: String) => void
 }
 
 const IslandContext = createContext<IslandContextType | undefined>(undefined)
 
 export const IslandProvider = ({ children }: { children: React.ReactNode }) => {
   const [selectedIsland, setSelectedIsland] = useState<Island | null>(null)
+  const [filterQuery, setFilterQuery ] = useState('')
+  const [filteredIsland] = ISLANDS.filter((island) => island.name.toLowerCase().includes(filterQuery.toLowerCase()))
+
+  const selectIsland = (id: string) => {
+    const island = ISLANDS.find((i) => i.id === id) || null
+    setSelectedIsland(island)
+  }
 
   return (
-    <IslandContext.Provider value={{ SelectedIsland: selectedIsland, setSelectedIsland }}>
+    <IslandContext.Provider value={{ selectedIsland, setSelectedIsland, selectIsland, filteredIsland, setFilterQuery}}>
       {children}
     </IslandContext.Provider>
   )

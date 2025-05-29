@@ -8,12 +8,19 @@ type IslandContextType = {
   selectedIsland: Island | null
   setSelectedIsland: (island: Island | null) => void
   selectIsland: (id: string) => void
+  filteredIslands: Island[]
+  setFilterQuery: (query: string) => void
 }
 
 const IslandContext = createContext<IslandContextType | undefined>(undefined)
 
 export const IslandProvider = ({ children }: { children: React.ReactNode }) => {
   const [selectedIsland, setSelectedIsland] = useState<Island | null>(null)
+  const [filterQuery, setFilterQuery] = useState('')
+
+  const filteredIslands = ISLANDS.filter((island) =>
+    island.name.toLowerCase().includes(filterQuery.toLowerCase())
+  )
 
   const selectIsland = (id: string) => {
     const island = ISLANDS.find((i) => i.id === id) || null
@@ -21,7 +28,9 @@ export const IslandProvider = ({ children }: { children: React.ReactNode }) => {
   }
 
   return (
-    <IslandContext.Provider value={{ selectedIsland, setSelectedIsland, selectIsland }}>
+    <IslandContext.Provider
+      value={{ selectedIsland, setSelectedIsland, selectIsland, filteredIslands, setFilterQuery }}
+    >
       {children}
     </IslandContext.Provider>
   )

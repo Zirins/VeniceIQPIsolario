@@ -1,0 +1,40 @@
+'use client'
+
+import { useIsland } from '@/context/IslandContext'
+import { useState } from 'react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
+
+export default function IslandInfoPanel() {
+    const { selectedIsland } = useIsland()
+    const [open, setOpen] = useState(false)
+
+    const togglePanel = () => setOpen(!open)
+
+    return (
+        <div className="absolute top-0 right-0 h-full z-50 transition-all duration-300 ease-in-out">
+            <div className={`bg-[#111] text-white h-full transition-all duration-300 ease-in-out ${open ? 'w-96 p-4' : 'w-8'} overflow-hidden relative shadow-xl`}>
+                <button
+                    onClick={togglePanel}
+                    className="absolute top-4 left-0 transform -translate-x-full bg-black text-white p-1 rounded-l z-50"
+                >
+                    {open ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
+                </button>
+
+                {open && (
+                    <>
+                        {!selectedIsland ? (
+                            <p className="italic text-gray-400 mt-10">Click on an island to see its info.</p>
+                        ) : (
+                            <div className="mt-10">
+                                <h2 className="text-xl font-semibold mb-2">{selectedIsland.name}</h2>
+                                <p><strong>Population:</strong> {selectedIsland.population}</p>
+                                <p><strong>Airbnb Count:</strong> {selectedIsland.airbnbCount}</p>
+                                <p><strong>Congestion:</strong> {selectedIsland.congestion ?? 'N/A'}</p>
+                            </div>
+                        )}
+                    </>
+                )}
+            </div>
+        </div>
+    )
+}
