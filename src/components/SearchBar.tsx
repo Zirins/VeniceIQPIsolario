@@ -33,8 +33,8 @@ export default function SearchBar() {
         className="w-full border px-3 py-2 rounded"
         placeholder="Search islands..."
       />
-      {showSuggestions && (
-        <ul className="absolute bg-white border mt-1 w-full rounded z-10">
+      {showSuggestions && input.trim() !== '' && (
+        <ul className="absolute bg-white border mt-1 w-full rounded z-500">
           {filteredIslands.slice(0, 5).map((island) => (
             <li
               key={island.id}
